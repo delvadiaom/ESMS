@@ -1,0 +1,85 @@
+<div class="loginPage">
+    <div class="loginBox">
+        <div class="imgContainer">
+            <img class="logo" src="../../../../../assets/images/asite.png" alt="">
+            <span>
+                Asite ESMS
+            </span>
+        </div>
+        <ng-container *ngIf="formName === 'login'">
+            <form [formGroup]="loginForm" id="loginForm" class="loginForm" (ngSubmit)="onSubmit($event)">
+                <label for="email">Email Address</label>
+                <input required formControlName="username" required type="email" name="email" placeholder="username@asite.com" />
+
+                <label for="password">Password</label>
+                <input required formControlName="password" required class="password" type="password" name="password"
+                    placeholder="**********" />
+                <button [disabled]="isLoginLoading" id="loginButton" class="login">Login</button>
+                <span class="errorMsg">
+                    {{errorMsg}}
+                </span>
+            </form>
+            <div class="subLinks">
+                <span (click)="setForm('forgot')">
+                    Forgot password ?
+                </span>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="formName === 'forgot'">
+            <form [formGroup]="forgotForm" id="loginForm" class="loginForm">
+                <label for="email">Email Address</label>
+                <input formControlName="email" required type="email" name="email" placeholder="username@asite.com" />
+                <button [disabled]="isForgotLoading" id="loginButton" (click)="onforgotSubmit($event)"
+                    class="login">Submit</button>
+                <span class="errorMsg">
+                    {{errorMsg}}
+                </span>
+            </form>
+            <div class="subLinks">
+                <span (click)="setForm('login')">
+                    Back to Login Page
+                </span>
+            </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="formName === 'otp'">
+            <form [formGroup]="otpForm" id="loginForm" class="loginForm">
+                <label for="otp">OTP</label>
+                <input formControlName="otp" required type="number" name="otp" placeholder="654321" />
+                <button [disabled]="isOtpLoading" id="loginButton" (click)="onOtpSubmit($event)"
+                    class="login">Verify</button>
+                <span class="errorMsg">
+                    {{errorMsg}}
+                </span>
+            </form>
+            <div class="subLinks">
+                <span (click)="setForm('login')">
+                    Back to Login Page
+                </span>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="formName === 'password'">
+            <form [formGroup]="passwordForm" id="loginForm" class="loginForm">
+                <label for="newPassword">New Password</label>
+                <input formControlName="newPassword" required type="password" name="newPassword"
+                    placeholder="***********" />
+                <label for="newPassword">Confirm Password</label>
+                <input formControlName="confirmPassword" required type="password" name="confirmPassword"
+                    placeholder="***********" />
+                <button [disabled]="isPasswordLoading" id="loginButton" (click)="onPasswordSubmit($event)"
+                    class="login">Submit</button>
+                <span class="errorMsg">
+                    {{errorMsg}}
+                </span>
+            </form>
+            <div class="subLinks">
+                <span (click)="setForm('login')">
+                    Back to Login Page
+                </span>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

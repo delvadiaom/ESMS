@@ -1,0 +1,555 @@
+<div class="profilePage">
+    <div class="header">
+        <h1>
+            <ul>
+                <li>
+                    <a [routerLink]="'/employees'">Employees</a>
+                </li>
+                <li>
+                    <a>{{ empId }}</a>
+                </li>
+            </ul>
+        </h1>
+        <button matTooltip="Delete Employee" class="iconBtn delete" (click)="deleteEmployee()">
+            <i class="fa fa-trash"></i>
+        </button>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="empDataFetching"></mat-progress-bar>
+    <ng-template [ngIf]="!empDataFetching">
+        <hr />
+        <div *ngIf="!empDataFetching" class="formContainer">
+            <div class="employeeBasicDetails">
+                <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                    <div class="left">
+                        <div class="imgContainer">
+                            <img [src]="emp_profile_image" alt="" />
+                            <label for="profile_image">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </label>
+                            <input (change)="imgChange($event)" accept="image/png, image/jpeg" style="display: none"
+                                type="file" id="profile_image" />
+                        </div>
+                        <div class="fields">
+                            <div class="singleField">
+                                <label for="full_name">Full Name : </label>
+                                <input placeholder="Enter Full name" type="text" formControlName="full_name"
+                                    name="full_name" id="full_name" />
+                                <small class="error" *ngIf="
+                                        !employeeForm.get('full_name').valid &&
+                                        employeeForm.get('full_name').touched
+                                    ">
+                                    Invalid Full Name
+                                </small>
+                            </div>
+                            <div class="singleField">
+                                <label for="date_of_birth">Birth Date : </label>
+                                <input max="2010-12-12" type="date" formControlName="date_of_birth" name="date_of_birth"
+                                    id="date_of_birth" />
+                                <small class="error" *ngIf="
+                                        !employeeForm.get('date_of_birth')
+                                            .valid &&
+                                        employeeForm.get('date_of_birth')
+                                            .touched
+                                    ">
+                                    Invalid Date of Birth
+                                </small>
+                            </div>
+
+                            <div class="singleField">
+                                <label for="emp_role">Employee Role : </label>
+                                <select formControlName="emp_role" name="emp_role" id="emp_role">
+                                    <option selected value="">
+                                        Select Role
+                                    </option>
+                                    <option value="0">Intern</option>
+                                    <option value="1">Trainee Developer</option>
+                                    <option value="2">
+                                        Senior Software Developer
+                                    </option>
+                                    <option value="3">Team Lead</option>
+                                    <option value="4">Manager</option>
+                                </select>
+                                <small class="error" *ngIf="
+                                        !employeeForm.get('emp_role').valid &&
+                                        employeeForm.get('emp_role').touched
+                                    ">
+                                    Invalid Employee role
+                                </small>
+                            </div>
+
+                            <div class="singleField">
+                                <label for="phone_number">Phone Number :
+                                </label>
+                                <input placeholder="Enter Phone Number" type="number" formControlName="phone_number"
+                                    name="phone_number" id="phone_number" />
+                                <small class="error" *ngIf="
+                                        !employeeForm.get('phone_number')
+                                            .valid &&
+                                        employeeForm.get('phone_number').touched
+                                    ">
+                                    Invalid Phone Number
+                                </small>
+                            </div>
+
+                            <div class="singleField">
+                                <label for="email_id">Email : </label>
+                                <input placeholder="Enter Email Address" type="email" formControlName="email_id"
+                                    name="email_id" id="email_id" />
+                                <small class="error" *ngIf="
+                                        !employeeForm.get('email_id').valid &&
+                                        employeeForm.get('email_id').touched
+                                    ">
+                                    Invalid Email address
+                                </small>
+                            </div>
+
+                            <div class="singleField">
+                                <label for="gender">Gender : </label>
+                                <select formControlName="gender" name="gender" id="gender">
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                </select>
+                                <small class="error" *ngIf="
+                                        !employeeForm.get('gender').valid &&
+                                        employeeForm.get('gender').touched
+                                    ">
+                                    Invalid Gender
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="detailContainer">
+                            <h2 class="title">Basic Information</h2>
+                            <div class="fields">
+                                <div class="singleField">
+                                    <label for="emergency_number">Emergency Number :
+                                    </label>
+                                    <input placeholder="Enter Emergency Number" type="number"
+                                        formControlName="emergency_number" name="emergency_number"
+                                        id="emergency_number" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get(
+                                                'emergency_number'
+                                            ).valid &&
+                                            employeeForm.get('emergency_number')
+                                                .touched
+                                        ">
+                                        Invalid Emergency Number
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="pan_no">Pan Number : </label>
+                                    <input placeholder="Enter Pan Number" type="text" formControlName="pan_no"
+                                        name="pan_no" id="pan_no" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('pan_no').valid &&
+                                            employeeForm.get('pan_no').touched
+                                        ">
+                                        Invalid Pan Number
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="aadhar_no">Aadhar Number :
+                                    </label>
+                                    <input placeholder="Enter Aadhar Number" type="number" formControlName="aadhar_no"
+                                        name="aadhar_no" id="aadhar_no" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('aadhar_no')
+                                                .valid &&
+                                            employeeForm.get('aadhar_no')
+                                                .touched
+                                        ">
+                                        Invalid Aadhar Number
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="permenent_address">Present Address :
+                                    </label>
+                                    <textarea placeholder="Enter Present Address" formControlName="present_address"
+                                        name="present_address" id="present_address"></textarea>
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('present_address')
+                                                .valid &&
+                                            employeeForm.get('present_address')
+                                                .touched
+                                        ">
+                                        Invalid Present Address
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="permenent_address">Permenent Address :
+                                    </label>
+                                    <textarea placeholder="Enter Permenent Address" formControlName="permenent_address"
+                                        name="permenent_address" id="permenent_address"></textarea>
+
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get(
+                                                'permenent_address'
+                                            ).valid &&
+                                            employeeForm.get(
+                                                'permenent_address'
+                                            ).touched
+                                        ">
+                                        Invalid Permenent Address
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detailContainer">
+                            <h2 class="title">Company Information</h2>
+                            <div class="fields">
+                                <div class="singleField">
+                                    <label for="emp_code">Employee Code :
+                                    </label>
+                                    <input placeholder="Enter Employee Code" type="text" formControlName="emp_code"
+                                        name="emp_code" id="emp_code" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('emp_code')
+                                                .valid &&
+                                            employeeForm.get('emp_code').touched
+                                        ">
+                                        Invalid Emploee Code
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="departmentName">Department Name :
+                                    </label>
+                                    <select (change)="getTeams($event)" formControlName="department_name"
+                                        name="departmentName" id="departmentName">
+                                        <option selected value="">
+                                            Select Department
+                                        </option>
+                                        <option *ngFor="let dept of departmentData" [value]="dept.departmentId">
+                                            {{ dept.departmentName }}
+                                        </option>
+                                    </select>
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('department_name')
+                                                .valid &&
+                                            employeeForm.get('department_name')
+                                                .touched
+                                        ">
+                                        Invalid Department Name
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="teamName">Team Name : </label>
+                                    <select formControlName="team_name" name="teamName" id="teamName">
+                                        <option selected value="">
+                                            Select Team
+                                        </option>
+                                        <option *ngFor="let team of teamsData" [value]="team.teamId">
+                                            {{ team.teamName }}
+                                        </option>
+                                    </select>
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('team_name')
+                                                .valid &&
+                                            employeeForm.get('team_name')
+                                                .touched
+                                        ">
+                                        Invalid Team Name
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="reporting_manager">Reporting Manager :
+                                    </label>
+                                    <input placeholder="Name of Reporting manager" type="text"
+                                        formControlName="reporting_manager" name="reporting_manager"
+                                        id="reporting_manager" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get(
+                                                'reporting_manager'
+                                            ).valid &&
+                                            employeeForm.get(
+                                                'reporting_manager'
+                                            ).touched
+                                        ">
+                                        Invalid Reporting Manager
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="emp_type">Employment Type :</label>
+                                    <select formControlName="emp_type" name="emp_type" id="emp_type">
+                                        <option selected value="">
+                                            Select type
+                                        </option>
+                                        <option value="0">Contractual</option>
+                                        <option value="1">Permanent</option>
+                                    </select>
+                                </div>
+                                <div class="singleField">
+                                    <label for="actual_employement_date">Actual Employment Date :</label>
+                                    <input type="date" formControlName="actual_employement_date"
+                                        name="actual_employement_date" id="actual_employement_date" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get(
+                                                'actual_employement_date'
+                                            ).valid &&
+                                            employeeForm.get(
+                                                'actual_employement_date'
+                                            ).touched
+                                        ">
+                                        Invalid Actual Employment date
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label for="">Past Experience
+                                        <span>(in years) :</span>
+                                    </label>
+                                    <input placeholder="Enter Past experience" type="number"
+                                        formControlName="past_experience" name="past_experience" id="past_experience" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('past_experience')
+                                                .valid &&
+                                            employeeForm.get('past_experience')
+                                                .touched
+                                        ">
+                                        Invalid Past Experience
+                                    </small>
+                                </div>
+
+                                <div class="singleField">
+                                    <label for="date_of_joining">Date of Joining :
+                                    </label>
+                                    <input type="date" formControlName="date_of_joining" name="date_of_joining"
+                                        id="date_of_joining" />
+                                    <small class="error" *ngIf="
+                                            !employeeForm.get('date_of_joining')
+                                                .valid &&
+                                            employeeForm.get('date_of_joining')
+                                                .touched
+                                        ">
+                                        Invalid Date of joining
+                                    </small>
+                                </div>
+                                <div class="singleField">
+                                    <label>Previous Rating : </label>
+                                    <div class="rating disabled">
+                                        <input formControlName="prev_rating" type="radio" id="star5" name="prev_rating"
+                                            value="5" />
+                                        <label class="full" for="star5"></label>
+
+                                        <input formControlName="prev_rating" type="radio" id="star4" name="prev_rating"
+                                            value="4" />
+                                        <label class="full" for="star4"></label>
+
+                                        <input formControlName="prev_rating" type="radio" id="star3" name="prev_rating"
+                                            value="3" />
+                                        <label class="full" for="star3"></label>
+
+                                        <input formControlName="prev_rating" type="radio" id="star2" name="prev_rating"
+                                            value="2" />
+                                        <label class="full" for="star2"></label>
+
+                                        <input formControlName="prev_rating" type="radio" id="star1" name="prev_rating"
+                                            value="1" />
+                                        <label class="full" for="star1"></label>
+                                    </div>
+                                </div>
+                                <div class="singleField">
+                                    <label>New Rating : </label>
+                                    <div class="rating">
+                                        <input formControlName="new_rating" type="radio" id="star52" name="new_rating"
+                                            value="5" />
+                                        <label class="full" for="star52"></label>
+
+                                        <input formControlName="new_rating" type="radio" id="star42" name="new_rating"
+                                            value="4" />
+                                        <label class="full" for="star42"></label>
+
+                                        <input formControlName="new_rating" type="radio" id="star32" name="new_rating"
+                                            value="3" />
+                                        <label class="full" for="star32"></label>
+
+                                        <input formControlName="new_rating" type="radio" id="star22" name="new_rating"
+                                            value="2" />
+                                        <label class="full" for="star22"></label>
+
+                                        <input formControlName="new_rating" type="radio" id="star12" name="new_rating"
+                                            value="1" />
+                                        <label class="full" for="star12"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="employeePrivateDetails">
+                        <div class="detailContainer">
+                            <h2 class="title">Salary Information</h2>
+                            <div class="fields">
+                                <div class="raise">
+                                    <div class="singleField">
+                                        <label for="bank_name">Payroll Code :
+                                        </label>
+                                        <input placeholder="Enter Payroll Code" type="text"
+                                            formControlName="payroll_code" name="payroll_code" id="payroll_code" />
+                                    </div>
+                                    <div class="singleField">
+                                        <label for="raise_percentage">Raise (In percentage) :
+                                        </label>
+                                        <input autocomplete="off" (input)="calculateSalary($event)"
+                                            placeholder="Enter Raise percentage" type=" number"
+                                            formControlName="raise_percentage" name="raise_percentage"
+                                            id="raise_percentage" />
+                                        <small class="error" *ngIf="
+                                                !employeeForm.get(
+                                                    'raise_percentage'
+                                                ).valid &&
+                                                employeeForm.get(
+                                                    'raise_percentage'
+                                                ).touched
+                                            ">
+                                            Invalid Raise percentage
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <hr style="width: 100%; margin: 20px 0" />
+
+                                <div class="salaryContainer">
+                                    <div class="oldSalary">
+                                        <div class="singleField">
+                                            <label for="annual_ctc">Current annual CTC (In LPA) :
+                                            </label>
+                                            <input readonly placeholder="Enter CTC" type="number"
+                                                formControlName="annual_ctc" name="annual_ctc" id="annual_ctc" />
+                                            <small class="error" *ngIf="
+                                                    !employeeForm.get(
+                                                        'annual_ctc'
+                                                    ).valid &&
+                                                    employeeForm.get(
+                                                        'annual_ctc'
+                                                    ).touched
+                                                ">
+                                                Invalid Annual CTC
+                                            </small>
+                                        </div>
+
+                                        <div class="singleField">
+                                            <label for="hra">Current HRA amount (40% of
+                                                Annual CTC) :
+                                            </label>
+                                            <input readonly placeholder="Enter HRA Amount" type="number"
+                                                formControlName="hra" name="hra" id="hra" />
+                                            <small class="error" *ngIf="
+                                                    !employeeForm.get('hra')
+                                                        .valid &&
+                                                    employeeForm.get('hra')
+                                                        .touched
+                                                ">
+                                                Invalid HRA
+                                            </small>
+                                        </div>
+
+                                        <div class="singleField">
+                                            <label for="pf">Current PF amount (12% of
+                                                Annual CTC) :
+                                            </label>
+                                            <input readonly placeholder="Enter PF Amount" type="number"
+                                                formControlName="pf" name="pf" id="pf" />
+                                            <small class="error" *ngIf="
+                                                    !employeeForm.get('pf')
+                                                        .valid &&
+                                                    employeeForm.get('pf')
+                                                        .touched
+                                                ">
+                                                Invalid PF
+                                            </small>
+                                        </div>
+                                        <div class="singleField">
+                                            <label for="base_salary">Current Base Salary amount (40%
+                                                of Annual CTC) :
+                                            </label>
+                                            <input readonly placeholder="Enter Base Salary" type="number"
+                                                formControlName="base_salary" name="base_salary" id="base_salary" />
+                                            <small class="error" *ngIf="
+                                                    !employeeForm.get(
+                                                        'base_salary'
+                                                    ).valid &&
+                                                    employeeForm.get(
+                                                        'base_salary'
+                                                    ).touched
+                                                ">
+                                                Invalid Base salary
+                                            </small>
+                                        </div>
+                                        <div class="singleField">
+                                            <label for="other_taxes">Current Other taxes amount :
+                                            </label>
+                                            <input readonly placeholder="other taxes" type="number"
+                                                formControlName="other_taxes" name="other_taxes" id="other_taxes" />
+                                            <small class="error" *ngIf="
+                                                    !employeeForm.get(
+                                                        'other_taxes'
+                                                    ).valid &&
+                                                    employeeForm.get(
+                                                        'other_taxes'
+                                                    ).touched
+                                                ">
+                                                Invalid Other amounts
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="newSalary">
+                                        <div class="singleField">
+                                            <label for="new_annual_ctc">New Annual CTC (In LPA) :
+                                            </label>
+                                            <input readonly placeholder="Enter CTC" type="number"
+                                                formControlName="new_annual_ctc" name="new_annual_ctc"
+                                                id="new_annual_ctc" />
+                                        </div>
+
+                                        <div class="singleField">
+                                            <label for="new_hra">New HRA amount (40% of Annual
+                                                CTC) :
+                                            </label>
+                                            <input readonly placeholder="Enter new HRA Amount" type="number"
+                                                formControlName="new_hra" name="new_hra" id="new_hra" />
+                                        </div>
+
+                                        <div class="singleField">
+                                            <label for="new_pf">New PF amount (12% of Annual
+                                                CTC) :
+                                            </label>
+                                            <input readonly placeholder="Enter new PF Amount" type="number"
+                                                formControlName="new_pf" name="new_pf" id="new_pf" />
+                                        </div>
+                                        <div class="singleField">
+                                            <label for="new_base_salary">New Base Salary amount (40% of
+                                                Annual CTC) :
+                                            </label>
+                                            <input readonly placeholder="Enter new Base Salary" type="number"
+                                                formControlName="new_base_salary" name="new_base_salary"
+                                                id="new_base_salary" />
+                                        </div>
+                                        <div class="singleField">
+                                            <label for="new_other_taxes">New Other Taxes amount :
+                                            </label>
+                                            <input readonly placeholder="new_other_taxes" type="number"
+                                                formControlName="new_other_taxes" name="new_other_taxes"
+                                                id="new_other_taxes" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bottomBar">
+                <button [disabled]="isUpdateProcessing" class="updateDetails" (click)="onSubmit()">
+                    Update
+                </button>
+            </div>
+        </div>
+        <div *ngIf="isComponentLoading" style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: white;
+                padding: 20px;
+            "></div>
+    </ng-template>
+</div>

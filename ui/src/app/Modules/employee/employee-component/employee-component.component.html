@@ -1,0 +1,234 @@
+<div class="header">
+    <h1>Employees</h1>
+    <button class="button-31" routerLink="add-employee">Add Employee</button>
+</div>
+<ng-template [ngIf]="!isComponentLoading">
+    <hr />
+    <div class="container">
+        <div class="filterContainer">
+            <div class="input-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="text"
+                    #searchInput
+                    placeholder="Search by name..."
+                    #input
+                />
+                <button (click)="searchEmployee(searchInput)">Search</button>
+            </div>
+            <select
+                (change)="setSelectedDepartment($event)"
+                name="selectDepartment"
+                id="selecDepartment"
+            >
+                <option value="all">All Departments</option>
+                <option
+                    *ngFor="let dept of departmentList"
+                    [value]="dept.departmentId"
+                >
+                    {{ dept.departmentName.toUpperCase() }}
+                </option>
+            </select>
+            <select
+                *ngIf="selectedDepartment !== 'all' && teamList"
+                (change)="setSelectedTeam($event)"
+                name="selectTeam"
+                id="selectTeam"
+            >
+                <option value="all">All Teams</option>
+                <option *ngFor="let team of teamList" [value]="team.teamId">
+                    {{ team.teamName.toUpperCase() }}
+                </option>
+            </select>
+        </div>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort ngClass="table">
+                <!-- EmpCode Column -->
+                <ng-container matColumnDef="empCode">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                        ngClass="table-header"
+                    >
+                        Employee Code
+                    </th>
+                    <td mat-cell *matCellDef="let row">{{ row.empCode }}</td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="fullName">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                        ngClass="table-header"
+                    >
+                        Employee Name
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        {{ row.fullName | titlecase }}
+                    </td>
+                </ng-container>
+
+                <!-- Department Column -->
+                <ng-container matColumnDef="departmentName">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                        ngClass="table-header"
+                    >
+                        Department Name
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        {{ row.departmentName | uppercase }}
+                    </td>
+                </ng-container>
+
+                <!-- Team Column -->
+                <ng-container matColumnDef="teamName">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                        ngClass="table-header"
+                    >
+                        Team Name
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        {{ row.teamName | titlecase }}
+                    </td>
+                </ng-container>
+
+                <!-- Employee Role Column -->
+                <ng-container matColumnDef="roleName">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                        ngClass="table-header"
+                    >
+                        Employee Role
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        {{ row.roleName | titlecase }}
+                    </td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="isActive">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                        ngClass="table-header"
+                    >
+                        Status
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                        [ngStyle]="{ color: row.isActive ? 'green' : 'red' }"
+                    >
+                        <mat-slide-toggle
+                            *ngIf="
+                                !isEmpStatusLoading ||
+                                deleteEmpProcessing !== row.empId
+                            "
+                            color="primary"
+                            style="margin-right: 10px"
+                            [checked]="row.isActive"
+                            (change)="
+                                onChangeStatus($event, row.empId, switchRef)
+                            "
+                            [matTooltip]="row.isActive ? 'Active' : 'Inactive'"
+                            #switchRef
+                        >
+                        </mat-slide-toggle>
+
+                        <ng-template
+                            [ngIf]="
+                                isEmpStatusLoading &&
+                                deleteEmpProcessing === row.empId
+                            "
+                        >
+                            <mat-spinner diameter="20"></mat-spinner>
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <!-- Log Column-->
+                <ng-container matColumnDef="log">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        ngClass="table-header"
+                    >
+                        Activity Log
+                    </th>
+                    <td mat-cell *matCellDef="let row" ngClass="table-row">
+                        <a
+                            matTooltip="View Logs"
+                            mat-raised-button
+                            color="primary"
+                            (click)="openDialog(row.empCode)"
+                        >
+                            <i class="fa-sharp fa-solid fa-chart-simple"></i>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <!-- Detail Column -->
+                <ng-container matColumnDef="detail">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        ngClass="table-header"
+                    >
+                        Details
+                    </th>
+                    <td mat-cell *matCellDef="let row" ngClass="table-row">
+                        <a
+                            matTooltip="View Details"
+                            mat-raised-button
+                            color="primary"
+                            [routerLink]="row.empId"
+                        >
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+            </table>
+            <div *ngIf="isDataLoading" class="spinner-loader">
+                <mat-progress-spinner
+                    diameter="40"
+                    color="primary"
+                    mode="indeterminate"
+                >
+                </mat-progress-spinner>
+            </div>
+
+            <mat-paginator
+                [length]="totalRows"
+                [pageIndex]="currentPage"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="pageChanged($event)"
+                aria-label="Select page"
+            >
+            </mat-paginator>
+        </div>
+    </div>
+</ng-template>
+
+<mat-progress-bar
+    mode="indeterminate"
+    *ngIf="isComponentLoading"
+></mat-progress-bar>

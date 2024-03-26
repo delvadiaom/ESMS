@@ -1,0 +1,32 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+    <div class="logo-container">
+        <button class="logo" (click)="toggleCollapse()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="logo-text" @fadeInOut *ngIf="collapsed">ESMS</div>
+        <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+            <i class="fal fa-times close-icon"></i>
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <li matTooltip="{{data.label}}" matTooltipPosition="right" class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: false}">
+                <i class="sidenav-link-icon" [class]="data.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+                    {{data.label}}
+                </span>
+            </a>
+        </li>
+    </ul>
+    <ul class="logout">
+        <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" (click)="logout()">
+                <i class="sidenav-link-icon  fa-sharp fa-solid fa-right-from-bracket"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+                    Logout
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>

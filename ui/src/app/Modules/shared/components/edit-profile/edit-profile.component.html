@@ -1,0 +1,89 @@
+<div class="profile" *ngIf="!isLoading;else loader">
+
+    <!-- Banner -->
+    <div class="banner">
+        <img class="logo" src="./../../../../../assets/images/AsiteLogo-white.svg" alt="AsiteLogo">
+        <button class="close" matTooltip="Close" mat-dialog-close @rotate><i class="fa fa-close"></i></button>
+    </div>
+
+    <!-- Profile Form -->
+    <form [formGroup]="profileForm">
+        <div class="content">
+            <!-- Profile Image -->
+            <label for="image">
+                <img class="img-thumbnail" [src]="imgUrl" alt="profile-image" />
+            </label>
+            <input id="image" style="display:none" type="file" formControlName="image">
+
+            <!-- Profile Name -->
+            <div class="name-wrapper">
+                <input formControlName="name" matTooltipPosition="left" matTooltip="Name" type="text" id="name"
+                    [ngClass]="{'full-border':editOptions}">
+            </div>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+
+            <!-- Edit Button  -->
+            <button class="edit" matTooltip="Edit" *ngIf="!editOptions" (click)="editProfile()">
+                <i class="fa fa-edit"></i>
+            </button>
+
+            <div class="withIcon">
+                <label for="email" matTooltip="Email"><i class="fa fa-envelope"></i></label>
+                <input formControlName="email" type="email" id="email" />
+            </div>
+
+            <div class="withIcon">
+                <label for="gender" matTooltip="Gender"><i class="fa-solid fa-venus-mars"></i></label>
+                <input formControlName="gender" type="text" id="gender" />
+            </div>
+
+            <div class="withIcon">
+                <label for="reportingManager" matTooltip="Reporting Manager"><i
+                        class="fa-solid  fa-user-tie"></i></label>
+                <input formControlName="reportingManager" type="text" id="reportingManager" />
+            </div>
+
+            <div class="edit-options" *ngIf="editOptions" formGroupName="editable">
+                <div class="withIcon" [ngClass]="{'full-border':editOptions}">
+                    <label for="currentPassword" matTooltip="Current Password"><i class="fa fa-key"></i></label>
+                    <input formControlName="currentPassword" type="password" id="currentPassword"
+                        placeholder="Current Password" />
+                </div>
+                <div class="withIcon" [ngClass]="{'full-border':editOptions}">
+                    <label for="password" matTooltip="Password"><i class="fa fa-key"></i></label>
+                    <input formControlName="password" type="password" id="password" placeholder="Password" />
+                </div>
+                <span class="show_error" *ngIf="profileForm?.get('editable')?.get('password')?.hasError('pattern')">
+                    Password must have minimum eight characters, at least one uppercase letter, one lowercase
+                    letter, one number and one special character:
+                </span>
+                <div class="withIcon" [ngClass]="{'full-border':editOptions}">
+                    <label for="cnfPassword" matTooltip="Confirm Password"><i class="fa fa-key"></i></label>
+                    <input formControlName="confirmPassword" type="password" id="cnfPassword"
+                        placeholder="Confirm Password" />
+                    </div>
+                    <span class="show_error"
+                        *ngIf="profileForm.hasError('passwordMatchErr') && profileForm?.get('editable')?.get('confirmPassword')?.dirty">Password
+                        and Confirm Password
+                        does not match.</span>
+                        <br>
+                    <span class="show_error" *ngIf="!isFetched">Enter correct credentials</span>
+            </div>
+
+            <div class="btn-grp">
+                <button mat-button class="cancel_button" (click)="back()" *ngIf="editOptions">Back</button>
+                <button [disabled]="isReqProcessing" mat-button class="save_button" (click)="updateProfile()" [disabled]="profileForm.invalid"
+                    *ngIf="editOptions" value="Update">Save</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<ng-template #loader>
+    <mat-progress-spinner style="margin:60px auto;" diameter="40" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+</ng-template>

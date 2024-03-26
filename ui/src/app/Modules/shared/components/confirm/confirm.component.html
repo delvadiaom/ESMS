@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <!-- Banner  -->
+    <div class="banner">
+      <h1>Delete User</h1>
+      <button class="close" matTooltip="Close" mat-dialog-close><i class="fa fa-close"></i></button>
+    </div>
+    <div class="info" >
+      <p>Are you sure you want to delete the {{deleteName}}  <strong>{{data?.name}}</strong>
+       </p>
+    </div>
+  
+    <!-- Delete Button  -->
+    <div class="btn-grp">
+      <button mat-button mat-dialog-close class="cancel_button">Close</button>
+      <button  mat-button [disabled]="isConfirmReqProcessing"  class="save_button" (click)="deleteApi()">Delete</button>
+    </div>
+  </div>

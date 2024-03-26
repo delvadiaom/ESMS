@@ -1,0 +1,68 @@
+<div class="header">
+    <h1>User Roles</h1>
+    <button class="button-31" [routerLink]="'add-role'">Add Role</button>
+</div>
+
+<div *ngIf="!isLoading" class="container">
+    <hr />
+    <div class="input-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search here..." (keyup)="applyFilter($event)" #input />
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table  mat-table [dataSource]="dataSource" matSort ngClass="table">
+            <!-- No Column -->
+            <ng-container matColumnDef="priviledgeId">
+                <th mat-header-cell *matHeaderCellDef  ngClass="table-header">
+                    Role Id.
+                </th>
+                <td mat-cell *matCellDef="let row;">{{ row.priviledgeId}}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="priviledgeName">
+                <th mat-header-cell *matHeaderCellDef  ngClass="table-header">
+                    Role Name
+                </th>
+                <td mat-cell *matCellDef="let row">{{ row.priviledgeName }}</td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th class="actionHeader" mat-header-cell *matHeaderCellDef ngClass="table-header">Action</th>
+                <td mat-cell *matCellDef="let row" ngClass="table-row">
+                    <a [disabled]="row.priviledgeName === 'ADMIN'"
+                        [ngClass]="{'disabled' : row.priviledgeName === 'ADMIN'}"
+                        (click)="editPermission(row.priviledgeId)" mat-raised-button>
+                        <i class="fa-solid fa-pen" style="color: #4b5db5"></i>
+                    </a>
+                    <a [disabled]="row.priviledgeName === 'ADMIN'"
+                        [ngClass]="{'disabled' : row.priviledgeName === 'ADMIN'}" (click)="deleteRole(row.priviledgeId)"
+                        mat-raised-button>
+                        <i class="fa-solid fa-trash" style="color: red"></i>
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell noMatchingData" colspan="4" align="center">
+                    No data matching the filter "{{ input.value }}"
+                </td>
+            </tr>
+        </table>
+
+        <!-- <div *ngIf="isLoading"
+            style="display: flex; justify-content: center; align-items: center; background: white;padding: 20px;">
+            <mat-progress-spinner diameter="40" color="primary" mode="indeterminate">
+            </mat-progress-spinner>
+        </div> -->
+
+
+    </div>
+</div>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>

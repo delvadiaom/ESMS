@@ -1,0 +1,26 @@
+<div
+    class="c-dashboardInfo"
+    [routerLink]="cardRoute"
+>
+    <div class="wrap">
+        <div *ngIf="cardData?.icon" class="icon">
+            <i [class]="cardData?.icon"></i>
+        </div>
+        <div [ngClass]="cardData?.icon?'data':'withoutIconData'" >
+            <h4
+                class="c-dashboardInfo__title"
+            >
+                {{ cardData?.title || cardData?.teamName | titlecase }}
+            </h4>
+            <span class="c-dashboardInfo__leadByName" *ngIf="cardData?.leadByName">
+                Lead By : <span> {{ cardData?.leadByName | titlecase }}</span></span
+            >
+            <span class="c-dashboardInfo__count" *ngIf="!cardData.itsCurrency">
+                {{ cardData.data || cardData.employeeCount || 0}}</span
+            >
+            <span class="c-dashboardInfo__count" *ngIf="cardData?.itsCurrency">
+                ₹ {{ cardData?.data || 0  | currencyConverter }}</span>
+        </div>
+        <div class="progressBar"></div>
+    </div>
+</div>

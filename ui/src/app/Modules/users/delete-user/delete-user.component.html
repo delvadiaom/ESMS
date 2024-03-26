@@ -1,0 +1,23 @@
+<div class="wrapper">
+
+  <!-- Banner  -->
+  <div class="banner">
+    <h1>Delete User</h1>
+    <button class="close" matTooltip="Close" mat-dialog-close @rotate><i class="fa fa-close"></i></button>
+  </div>
+  <div class="info">
+    <div>
+      <p>Are you sure you want to delete the user?</p>
+    </div>
+    <div>
+      <p><strong> {{data?.userToBeDeleted?.email}} - {{data?.userToBeDeleted?.priviledgeName}} </strong></p>
+    </div>
+  </div>
+
+
+  <!-- Delete Button  -->
+  <div class="btn-grp">
+    <button mat-button mat-dialog-close class="cancel_button">Close</button>
+    <button mat-button class="save_button" [disabled]="btnEnable" (click)="onDelete(data.userToBeDeleted)">{{deleteBtnText}}</button>
+  </div>
+</div>

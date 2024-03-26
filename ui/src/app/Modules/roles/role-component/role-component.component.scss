@@ -1,0 +1,240 @@
+body {
+    font-family: "lato", sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    // border: 2px solid red;
+}
+
+h1 {
+    font-size: 28px;
+    margin: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    // border: 2px solid red;
+    width: 100%;
+}
+
+.mat-elevation-z8 {
+    // border: 2px solid red;
+    border-radius: 5px;
+    overflow: auto;
+}
+
+/* CSS */
+.button-31 {
+    background-color: #4b5db5;
+    border-radius: 4px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    max-width: 200px;
+    min-height: 50px;
+    min-width: 10px;
+    outline: none;
+    overflow: hidden;
+    padding: 9px 20px 8px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    // border: 2px solid red;
+}
+
+.button-31:hover {
+    background-color: #27367f;
+}
+
+table {
+    width: 100%;
+}
+
+mat-form-field {
+    font-size: 14px;
+    // border: 2px solid red;
+    width: 100%;
+
+    input {
+        width: 100%;
+        padding: 15px;
+        outline: none;
+        font-size: 16px;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 1.5px solid darkgray;
+        background-color: #f4f7fa;
+    }
+}
+
+th {
+    background-color: #4b5db5 !important;
+    color: white !important;
+    font-size: 18px;
+    // text-align: center !important;
+}
+
+td {
+    font-size: 18px;
+    color: black;
+    // text-align: center;
+    // text-align: c;
+
+    a {
+        // background-color: #27367f !important;
+        background: none;
+        border: none;
+        box-shadow: none;
+        color: black !important;
+        font-size: 20px;
+        // border: 2px solid red;
+
+        &.disabled {
+            // border: 2px solid red;
+            cursor: not-allowed;
+
+            i {
+                color: #707070 !important;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.actionHeader {
+    text-align: center !important;
+}
+
+.table-row {
+    text-align: center;
+}
+
+mat-paginator {
+    padding-top: 20px;
+}
+
+// @media screen and (max-width: 966px) {
+//    .table{
+//       width: 50% !important;
+//    }
+// }
+
+.input-box {
+    position: relative;
+    height: 60px;
+    //max-width: 900px;
+    // border: 2px solid red;
+
+    background: #fff;
+
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+    margin-top: 30px;
+    margin-bottom: 15px;
+    width: 100%;
+
+    padding: 10px;
+}
+
+.input-box i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #707070;
+}
+
+.input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    padding: 0 155px 0 65px;
+    background-color: transparent;
+}
+
+.input-box .button {
+    right: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    background-color: #263238;
+    cursor: pointer;
+    // padding: 20px;
+    // background-color: red;
+}
+
+.input-box .button:active {
+    transform: translateY(-50%) scale(0.98);
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+    .input-box {
+        height: 50px;
+        margin: 20px auto;
+    }
+
+    .input-box i {
+        left: 12px;
+        font-size: 25px;
+    }
+
+    .input-box input {
+        padding: 0 112px 0 50px;
+    }
+
+    .input-box .button {
+        right: 8px;
+        font-size: 10px;
+        padding: 8px 18px;
+    }
+}
+
+.button-custom {
+    font-family: sans-serif;
+    padding: 10px 20px !important;
+    background-color: #dfe2f0 !important;
+    border: none !important;
+    border-radius: 2px !important;
+    font-size: 16px !important;
+    cursor: pointer;
+    color: black !important;
+    border-radius: 5px !important;
+
+    &:hover {
+        color: #dfe2f0 !important;
+        background-color: #4b5db5 !important;
+    }
+}
+
+.noMatchingData {
+    padding-top: 30px;
+    color: red;
+    font-size: 20px;
+}

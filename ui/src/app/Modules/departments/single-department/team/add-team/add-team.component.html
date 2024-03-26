@@ -1,0 +1,67 @@
+<!-- Banner  -->
+<div class="banner">
+  <h1 mat-dialog-title class="title_dilog">{{data.title}}</h1>
+  <button class="close" matTooltip="Close" mat-dialog-close @rotate><i class="fa fa-close"></i></button>
+</div>
+
+<!-- Form  -->
+<ng-template [ngIf]="!formLoading">
+<div mat-dialog-content class="main-content-dilog">
+  <div class="full_form">
+    <form [formGroup]="addTeamForm">
+
+      <!-- Team Code  -->
+      <div class="fieldOfForm">
+        <label for="team_code">Team Code<span class="red-star">*</span>:</label>
+        <input type="text" class="form-control" id="team_code" formControlName="teamCode"
+          placeholder="Enter team code">
+          <span class="show_error" *ngIf="addTeamForm.get('teamCode')?.hasError('maxlength')">
+            Maximum 10 characters are allowed!!
+          </span>
+          <span class="show_error" *ngIf="addTeamForm.get('teamCode')?.hasError('pattern')">
+            Invalid Team Code!!
+          </span>
+      </div>
+
+      <!-- Team Name  -->
+      <div class="fieldOfForm">
+        <label for="team_name">Team Name<span class="red-star">*</span>:</label>
+        <input type="text" class="form-control" id="team_name" formControlName="teamName"
+          placeholder="Enter team name">
+          <span class="show_error" *ngIf="addTeamForm.get('teamName')?.hasError('maxlength')">
+            Maximum 20 characters are allowed!!
+          </span>
+          <span class="show_error" *ngIf="addTeamForm.get('teamName')?.hasError('pattern')">
+            Invalid Team Name!!
+          </span>
+      </div>
+
+      <!-- Lead By  -->
+      <div class="fieldOfForm">
+        <label for="lead_by">Lead By<span class="red-star">*</span>:</label>
+        <input type="text" class="form-control" id="lead_by" formControlName="leadBy" placeholder="Lead by">
+        <span class="show_error" *ngIf="addTeamForm.get('leadBy')?.hasError('maxlength')">
+          Maximum 20 characters are allowed!!
+        </span>
+        <span class="show_error" *ngIf="addTeamForm.get('leadBy')?.hasError('pattern')">
+          Invalid Leader Name!!
+        </span>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions class="btn-grp">
+  <button mat-button mat-dialog-close class="cancel_button" class="cancel_button">Close</button>
+  <button (click)="submit_team(deptId)" [disabled]="isTeamReqProcessing || addTeamForm.invalid" mat-button class="save_button">Save</button>
+</div>
+
+</ng-template>
+
+ <!-- Loader  -->
+<div *ngIf="formLoading"
+class="spinner-loader" >
+  <mat-progress-spinner diameter="40" color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>

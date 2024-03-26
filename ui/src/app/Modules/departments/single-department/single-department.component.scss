@@ -1,0 +1,83 @@
+$main-theme-color: #4b5db5;
+$main-disabled-color: #707070;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    h1 {
+        font-size: 28px;
+        margin: 0;
+        text-align: center;
+
+        ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+
+            li {
+                &::after {
+                    content: "/";
+                    margin-left: 10px;
+                }
+
+                &:last-child::after {
+                    content: "";
+                }
+
+                a {
+                    color: $main-theme-color;
+                    text-decoration: none;
+                }
+
+                &:last-child {
+                    cursor: not-allowed;
+                    a {
+                        color:$main-disabled-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .btn-grp {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+}
+
+.container {
+    margin-top: 30px;
+
+    .containerTop {
+        display: flex;
+        width: 100%;
+        column-gap: 50px;
+        flex-wrap: wrap;
+
+        .top {
+            flex-grow: 1;
+        }
+    }
+
+    .containerBottom {
+        display: flex;
+        column-gap: 50px;
+        row-gap: 50px;
+
+        .app-graph-card {
+            width: 50%;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .containerBottom {
+            flex-wrap: wrap;
+        }
+    }
+}

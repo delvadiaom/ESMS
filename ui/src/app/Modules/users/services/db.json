@@ -1,0 +1,26 @@
+[
+  {
+      "id": 11,
+      "name": "Satpalsinh Maheshwari",
+      "email": "satpal@asite.com", 
+      "role": "Admin"
+  },
+  {
+      "id": 12,
+      "name": "Vanshika Doshi",
+      "email": "vanshika@asite.com", 
+      "role": "HR-Management"
+  },
+  {
+      "id": 13,
+      "name": "Nandini Seladia",
+      "email": "nandini@asite.com", 
+      "role": "Admin"
+  },
+  {
+      "id": 14,
+      "name": "Armika Patel",
+      "email": "amika@asite.com", 
+      "role": "HR-Management"
+  }
+]

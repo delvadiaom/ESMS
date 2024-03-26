@@ -1,0 +1,72 @@
+<div class="header">
+    <h1>
+        <ul>
+            <li>
+                <a [routerLink]="'/roles'">User Roles</a>
+            </li>
+            <li>
+                <a>
+                    Add Role
+                </a>
+            </li>
+        </ul>
+    </h1>
+</div>
+<hr />
+<mat-card class="wrapper">
+    <form
+        class="role-form"
+        [formGroup]="permissionForm"
+        (ngSubmit)="addNewRoleSubmit()"
+        ngNativeValidate
+    >
+        <div class="role-wrapper">
+            <label for="roleName">Role Name : </label>
+            <input
+                formControlName="roleName"
+                type="text"
+                placeholder="Enter Role Name"
+                id="roleName"
+            />
+        </div>
+        <mat-divider></mat-divider>
+        <div class="container">
+            <div class="sub-container" *ngFor="let permission of permissions">
+                <div class="main">
+                    <div class="permissionHeader">
+                        <mat-card-title class="space">{{
+                            permission.label
+                        }}</mat-card-title>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <mat-card-content
+                        class="nest"
+                        [formGroupName]="permission.shortForm"
+                    >
+                        <mat-slide-toggle
+                            color="primary"
+                            *ngFor="let perm of permission.nested"
+                            [checked]="perm[1]"
+                            [formControlName]="permission.shortForm + perm[2]"
+                            ><mat-card-subtitle class="space">{{
+                                perm[0]
+                            }}</mat-card-subtitle></mat-slide-toggle
+                        >
+                    </mat-card-content>
+                </div>
+            </div>
+        </div>
+        <div class="btn-grp">
+            <button mat-button class="cancel_button" [routerLink]="'/roles'">
+                Back
+            </button>
+            <button
+                mat-button
+                [disabled]="isRoleCreationProcessing"
+                class="save_button"
+            >
+                Save
+            </button>
+        </div>
+    </form>
+</mat-card>

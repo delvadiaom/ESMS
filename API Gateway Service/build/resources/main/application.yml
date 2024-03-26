@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: AuthService
+          uri: lb://AuthService
+          predicates:
+          - Path=/auth/**,/user/**,/email/**
+
+        - id: MainService
+          uri: lb://MainService
+          predicates:
+            - Path=/activityLogs/**,/dashboard/**,/department/**,/employee/**,/employeeRating/**,/employeeSalary/**,/report/**,/team/**,

@@ -1,0 +1,74 @@
+<!-- banner  -->
+<div class="banner">
+  <h1 mat-dialog-title class="title_dilog">{{data.title}}</h1>
+  <button class="close" matTooltip="Close" mat-dialog-close @rotate><i class="fa fa-close"></i></button>
+</div>
+
+<!-- form  -->
+<ng-template [ngIf]="!formLoading">
+
+  <div mat-dialog-content class="main-content-dilog">
+    <div class="full_form">
+      <form [formGroup]="addDepartmentForm" id="departmentForm">
+
+        <!-- Department Code  -->
+        <div class="fieldOfForm">
+          <label for="department_code">Department Code<span class="red-star">*</span>:</label>
+          <input type="text" class="form-control" id="department_code" formControlName="departmentCode"
+            placeholder="Enter Department code">
+          <span class="show_error" *ngIf="addDepartmentForm.get('departmentCode')?.hasError('maxlength')">
+            Maximum 10 characters are allowed!!
+          </span>
+          <span class="show_error" *ngIf="addDepartmentForm.get('departmentCode')?.hasError('pattern')">
+            Invalid Department Code!!
+          </span>
+        </div>
+
+        <!-- Department Name  -->
+        <div class="fieldOfForm">
+          <label for="department_name">Department Name<span class="red-star">*</span>:</label>
+          <input type="text" class="form-control" id="department_name" formControlName="departmentName"
+            placeholder="Enter Department name">
+          <span class="show_error" *ngIf="addDepartmentForm.get('departmentName')?.hasError('maxlength')">
+            Maximum 20 characters are allowed!!
+          </span>
+          <span class="show_error" *ngIf="addDepartmentForm.get('departmentName')?.hasError('pattern')">
+            Invalid Department Name!!
+          </span>
+        </div>
+
+        <!-- Headed By  -->
+        <div class="fieldOfForm">
+          <label for="head_by">Headed by<span class="red-star">*</span>:</label>
+          <input type="text" class="form-control" id="head_by" formControlName="headedBy"
+            placeholder="Enter Code of Headed by">
+          <span class="show_error" *ngIf="addDepartmentForm.get('headedBy')?.hasError('maxlength')">
+            Maximum 20 characters are allowed!!
+          </span>
+          <span class="show_error" *ngIf="addDepartmentForm.get('headedBy')?.hasError('pattern')">
+            Invalid Headed Name!!
+          </span>
+        </div>
+
+        <!-- Skills  -->
+        <div class="fieldOfForm">
+          <label for="skills">Skills<span class="red-star">*</span>:</label>
+          <input type="text" class="form-control" id="skills" formControlName="skills" placeholder="Skills">
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="btn-grp">
+    <button mat-button mat-dialog-close class="cancel_button" class="cancel_button">Close</button>
+    <button mat-button [disabled]="isDeptReqProcessing" (click)="submit_department()" [disabled]="addDepartmentForm.invalid" class="save_button">Save</button>
+  </div>
+
+</ng-template>
+
+<!-- Loader -->
+<div *ngIf="formLoading" class="spinner-loader" >
+  <mat-progress-spinner diameter="40" color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>

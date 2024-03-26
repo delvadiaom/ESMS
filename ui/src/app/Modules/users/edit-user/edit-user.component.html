@@ -1,0 +1,94 @@
+<div class="wrapper">
+    <!-- Banner  -->
+    <div class="banner">
+        <h1>Edit User</h1>
+        <button class="close" matTooltip="Close" mat-dialog-close @rotate>
+            <i class="fa fa-close"></i>
+        </button>
+    </div>
+
+   
+
+    <div
+        *ngIf="!isFetched"
+        style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background: white; */
+            padding: 20px;
+        "
+    >
+        <mat-progress-spinner
+            diameter="40"
+            color="primary"
+            mode="indeterminate"
+        >
+        </mat-progress-spinner>
+    </div>
+
+    <form [formGroup]="editUserForm" *ngIf="isFetched">
+        <!-- Name  -->
+        <div class="form-field" matTooltip="Name can not be changed.">
+            <label for="empName">Name</label>
+            <input
+                type="text"
+                readonly
+                class="not-allow"
+                formControlName="empName"
+                id="empName"
+                placeholder="Enter name"
+            />
+            <span
+                style="color: red"
+                *ngIf="editUserForm.controls['empName']?.hasError('required')"
+                >Kindly enter the full name of user.</span
+            >
+        </div>
+
+        <!-- Email -->
+        <div class="form-field" matTooltip="Email can not be changed.">
+            <label for="empEmail">Email</label>
+            <input
+                type="email"
+                readonly
+                class="not-allow"
+                formControlName="empEmail"
+                id="empEmail"
+                placeholder="Enter email"
+            />
+        </div>
+        <!-- Email Error -->
+        <span
+            class="error"
+            *ngIf="editUserForm.controls['empEmail'].hasError('email')"
+            >Enter valid email</span>
+      
+
+        <!-- Role  -->
+        <div class="form-field">
+            <label for="empRole">Role</label>
+            <select formControlName="empRole" id="empRole">
+                <option *ngFor="let role of roles" [value]="role.key">
+                    {{ role.name }}
+                </option>
+            </select>
+        </div>
+
+
+
+        <div class="btn-grp">
+            <button mat-button mat-dialog-close class="cancel_button">
+                Cancel
+            </button>
+            <button
+                mat-button
+                [disabled]="btnEnable"
+                (click)="editUser()"
+                class="save_button"
+            >
+           {{editBtnText}}
+            </button>
+        </div>
+    </form>
+</div>

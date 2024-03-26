@@ -1,0 +1,1347 @@
+$main-light : #f4f7fa;
+$main-dark: #263238;
+$main-box-shadow: #e6edef;
+$main-font: #222222;
+$danger: #ff1515;
+
+$graph-red: #da1e28;
+$graph-orange: #ff832b;
+$graph-yellow: #d4c44e;
+$graph-green: #198038;
+$graph-blue: #2551d5;
+$graph-cyan: #489091;
+$graph-pink: #d9a7a7;
+$graph-brown: #9e6f02;
+
+.profilePage {
+    // border: 2px solid red;
+
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        // border: 2px solid red;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin: 0;
+        text-align: center;
+
+        ul {
+            list-style: none;
+            display: flex;
+            // border: 2px solid red;
+            gap: 10px;
+
+            li {
+                &::after {
+                    content: "/";
+                    margin-left: 10px;
+                }
+
+                &:last-child::after {
+                    content: "";
+                }
+
+                a {
+                    color: #4b5db5;
+                    text-decoration: none;
+                }
+
+                &:last-child {
+                    cursor: not-allowed;
+
+                    a {
+                        color: #707070;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .formContainer {
+        box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        margin-top: 30px;
+        border-radius: 10px;
+        padding: 30px;
+
+        // &.loading {
+        //     opacity: 0.5;
+        // }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            // border: 2px solid red;
+
+            .employeeBasicDetails {
+                // border: 2px solid red;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .employeePrivateDetails {
+                margin-top: 30px;
+            }
+        }
+
+        .left {
+            width: 25%;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            min-width: 300px;
+
+            .fields {
+                .singleField {
+                    width: 100%;
+                }
+            }
+
+
+            .title {
+                align-self: center;
+            }
+
+            .imgContainer {
+                height: 250px;
+                width: 250px;
+                margin-bottom: 20px;
+                position: relative;
+                border-radius: 50%;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                }
+
+                i {
+                    position: absolute;
+                    font-size: 30px;
+                    right: 15px;
+                    bottom: 30px;
+                    cursor: pointer;
+                    color: #4b5db5;
+                    color: black;
+                }
+            }
+
+            .contactDetails {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .right {
+            width: 73%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            min-width: 400px;
+
+            .detailContainer {
+                width: 100%;
+            }
+        }
+
+        .fields {
+            // border: 2px solid red;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            .singleField {
+                // border: 2px solid red;
+                width: 48%;
+                display: flex;
+                flex-direction: column;
+                min-width: 200px;
+
+                label {
+                    color: #6C7383;
+                }
+
+                input,
+                textarea,
+                select {
+                    padding: 10px;
+                    resize: none;
+                    outline: none;
+                    font-size: 16px;
+                    border: 2px solid #6C7383;
+                    border-radius: 5px;
+                    background-color: white;
+                    font-weight: 400;
+                    cursor: pointer;
+                    color: black;
+
+                }
+
+                // input.ng-invalid.ng-touched {
+                //     border: 2px solid red;
+                // }
+
+                small.error {
+                    color: red;
+                }
+
+                input:-webkit-autofill,
+                input:-webkit-autofill:hover,
+                input:-webkit-autofill:focus,
+                input:-webkit-autofill:active {
+                    -webkit-box-shadow: 0 0 0 30px white inset !important;
+                }
+
+                .rating,
+                label {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .rating {
+                    border: none;
+                    float: left;
+                    width: fit-content;
+                    // border: 2px solid red;
+                    cursor: pointer;
+
+                    >input {
+                        display: none;
+                    }
+
+                    >label:before {
+                        margin: 5px;
+                        margin-top: 10px;
+                        font-size: 22px;
+                        font-family: FontAwesome;
+                        display: inline-block;
+                        content: "\f005";
+                    }
+
+                    >label {
+                        color: #ddd;
+                        float: right;
+                    }
+
+                    >input:checked~label,
+                    &:not(:checked)>label:hover,
+                    &:not(:checked)>label:hover~label {
+                        color: #ffe100;
+                    }
+
+                    >input:checked+label:hover,
+                    >input:checked~label:hover,
+                    >label:hover~input:checked~label,
+                    >input:checked~label:hover~label {
+                        color: #f0d53b;
+                    }
+
+
+                    &.disabled {
+                        cursor: not-allowed;
+
+                        >label {
+                            pointer-events: none;
+                            cursor: not-allowed;
+                        }
+
+                        input {
+                            pointer-events: none;
+                        }
+
+                        &:not(:checked)>label:hover,
+                        &:not(:checked)>label:hover~label {
+                            color: #ddd;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .employeePrivateDetails {
+            margin-top: 20px;
+            // border: 2px solid red;
+            width: 100%;
+
+
+
+            .detailContainer {
+                .fields {
+                    // border: 2px solid red;
+
+                    .raise {
+                        // border: 2px solid red;
+                        width: 100%;
+
+                        .singleField {
+                            // border: 2px solid red;
+                            width: 48%;
+                            margin-bottom: 10px;
+                        }
+                    }
+
+                    .salaryContainer {
+                        // border: 2px solid red;
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+
+                        // border: 2px solid red;
+                        >div {
+                            width: 48%;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+
+                            .singleField {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .bottomBar {
+            // border: 2px solid red;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+
+            .updateDetails {
+                margin-top: 30px;
+                padding: 15px 30px;
+                cursor: pointer;
+                font-size: 16px;
+                border: 2px solid #4b5db5;
+                background-color: #4b5db5;
+                color: white;
+                border-radius: 5px;
+                align-self: center;
+                font-weight: 600;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: #27367f;
+                    opacity: 1;
+                }
+
+
+                &:disabled {
+                    opacity: .75;
+                    background-color: #4b5db5;
+                    // pointer-events: none;
+                    cursor: not-allowed;
+                }
+
+            }
+
+
+        }
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    .profilePage {
+        // border: 2px solid red;
+
+        display: flex;
+        flex-direction: column;
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            // border: 2px solid red;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .formContainer {
+
+            // border: 2px solid red;
+            form {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                // border: 2px solid red;
+
+                .employeeBasicDetails {
+                    // border: 2px solid red;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: column;
+                }
+
+                .employeePrivateDetails {
+                    margin-top: 30px;
+                }
+            }
+
+            .left {
+                width: 100%;
+                // border: 2px solid black;
+                // box-shadow: 5px 5px 10px #e6edef;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 30px;
+                min-width: 300px;
+                margin-bottom: 20px;
+
+                .imgContainer {
+                    // border: 2px solid red;
+                    // overflow: hidden;
+                    height: 250px;
+                    width: 250px;
+                    margin-bottom: 0;
+                    position: relative;
+                    border-radius: 50%;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 50%;
+                    }
+
+                    i {
+                        // border: 2px solid red;
+                        position: absolute;
+                        font-size: 30px;
+                        right: 15px;
+                        bottom: 30px;
+                        cursor: pointer;
+                        color: #4b5db5;
+                    }
+                }
+
+                .fields {
+                    // border: 2px solid red;
+                    width: calc(100% - 250px);
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 20px;
+
+                    .singleField {
+                        // border: 2px solid red;
+                        width: 48%;
+                        display: flex;
+                        flex-direction: column;
+                        min-width: 200px;
+
+                        label {
+                            color: #6C7383;
+                        }
+
+                        input,
+                        textarea,
+                        select {
+                            padding: 10px;
+                            resize: none;
+                            outline: none;
+                            font-size: 16px;
+                            border: 2px solid #6C7383;
+                            border-radius: 5px;
+                            background-color: white;
+                            font-weight: 400;
+                            cursor: pointer;
+                            color: black;
+
+                        }
+
+                        // input.ng-invalid.ng-touched {
+                        //     border: 2px solid red;
+                        // }
+
+                        small.error {
+                            color: red;
+                        }
+
+                        // textarea {
+                        //     letter-spacing: 0;
+                        // }
+
+
+                    }
+                }
+            }
+
+            .right {
+                width: 100%;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                min-width: 400px;
+
+                .detailContainer {
+                    width: 100%;
+                }
+            }
+
+            .fields {
+                // border: 2px solid red;
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                .singleField {
+                    // border: 2px solid red;
+                    width: 48%;
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 200px;
+
+                    label {
+                        color: #6C7383;
+                    }
+
+                    input,
+                    textarea,
+                    select {
+                        padding: 10px;
+                        resize: none;
+                        outline: none;
+                        font-size: 16px;
+                        border: 2px solid #6C7383;
+                        border-radius: 5px;
+                        background-color: white;
+                        font-weight: 400;
+                        cursor: pointer;
+                        color: black;
+
+                    }
+
+                    // input.ng-invalid.ng-touched {
+                    //     border: 2px solid red;
+                    // }
+
+                    small.error {
+                        color: red;
+                    }
+
+                    // textarea {
+                    //     letter-spacing: 0;
+                    // }
+
+                    .rating,
+                    label {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .rating {
+                        border: none;
+                        float: left;
+                        width: fit-content;
+                        // border: 2px solid red;
+                        cursor: pointer;
+
+                        >input {
+                            display: none;
+                        }
+
+                        >label:before {
+                            margin: 5px;
+                            margin-top: 10px;
+                            font-size: 22px;
+                            font-family: FontAwesome;
+                            display: inline-block;
+                            content: "\f005";
+                        }
+
+                        >label {
+                            color: #ddd;
+                            float: right;
+                        }
+
+                        >input:checked~label,
+                        &:not(:checked)>label:hover,
+                        &:not(:checked)>label:hover~label {
+                            color: #ffe100;
+                        }
+
+                        >input:checked+label:hover,
+                        >input:checked~label:hover,
+                        >label:hover~input:checked~label,
+                        >input:checked~label:hover~label {
+                            color: #f0d53b;
+                        }
+
+
+                        &.disabled {
+                            cursor: not-allowed;
+
+                            >label {
+                                pointer-events: none;
+                                cursor: not-allowed;
+                            }
+
+                            input {
+                                pointer-events: none;
+                            }
+
+                            &:not(:checked)>label:hover,
+                            &:not(:checked)>label:hover~label {
+                                color: #ddd;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .employeePrivateDetails {
+                margin-top: 20px;
+
+                .right {
+                    width: 100%;
+                }
+            }
+
+            .bottomBar {
+                // border: 2px solid red;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .updateDetails {
+                    margin-top: 30px;
+                    padding: 15px 30px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    border: 2px solid #4b5db5;
+                    background-color: #4b5db5;
+                    color: white;
+                    border-radius: 5px;
+                    align-self: center;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+
+
+                    &:hover {
+                        background-color: #27367f;
+                        opacity: 1;
+                    }
+
+
+                    &:disabled {
+                        opacity: .75;
+                        background-color: #4b5db5;
+                        // pointer-events: none;
+                        cursor: not-allowed;
+                    }
+
+                }
+
+
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .profilePage {
+        // border: 2px solid red;
+
+        display: flex;
+        flex-direction: column;
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            // border: 2px solid red;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .formContainer {
+            // border: 2px solid red;
+
+            form {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                // border: 2px solid red;
+
+                .employeeBasicDetails {
+                    // border: 2px solid red;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: column;
+                }
+
+                .employeePrivateDetails {
+                    margin-top: 30px;
+                }
+            }
+
+            .left {
+                width: 100%;
+                // border: 2px solid black;
+                // box-shadow: 5px 5px 10px #e6edef;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                gap: 30px;
+                min-width: 300px;
+                margin-bottom: 20px;
+
+                .imgContainer {
+                    // border: 2px solid red;
+                    // overflow: hidden;
+                    height: 250px;
+                    width: 250px;
+                    margin-bottom: 0;
+                    position: relative;
+                    border-radius: 50%;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 50%;
+                    }
+
+                    i {
+                        // border: 2px solid red;
+                        position: absolute;
+                        font-size: 30px;
+                        right: 15px;
+                        bottom: 30px;
+                        cursor: pointer;
+                        color: #4b5db5;
+                    }
+                }
+
+                .fields {
+                    // border: 2px solid red;
+                    width: calc(100%);
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 20px;
+
+                    .singleField {
+                        // border: 2px solid red;
+                        width: 48%;
+                        display: flex;
+                        flex-direction: column;
+                        min-width: 200px;
+
+                        label {
+                            color: #6C7383;
+                        }
+
+                        input,
+                        textarea,
+                        select {
+                            padding: 10px;
+                            resize: none;
+                            outline: none;
+                            font-size: 16px;
+                            border: 2px solid #6C7383;
+                            border-radius: 5px;
+                            background-color: white;
+                            font-weight: 400;
+                            cursor: pointer;
+                            color: black;
+
+                        }
+
+                        // input.ng-invalid.ng-touched {
+                        //     border: 2px solid red;
+                        // }
+
+                        small.error {
+                            color: red;
+                        }
+
+                        // textarea {
+                        //     letter-spacing: 0;
+                        // }
+
+
+                    }
+                }
+            }
+
+            .right {
+                width: 100%;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                min-width: 400px;
+
+                .detailContainer {
+                    width: 100%;
+                }
+            }
+
+            .fields {
+                // border: 2px solid red;
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                .singleField {
+                    // border: 2px solid red;
+                    width: 48%;
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 200px;
+
+                    label {
+                        color: #6C7383;
+                    }
+
+                    input,
+                    textarea,
+                    select {
+                        padding: 10px;
+                        resize: none;
+                        outline: none;
+                        font-size: 16px;
+                        border: 2px solid #6C7383;
+                        border-radius: 5px;
+                        background-color: white;
+                        font-weight: 400;
+                        cursor: pointer;
+                        color: black;
+
+                    }
+
+                    // input.ng-invalid.ng-touched {
+                    //     border: 2px solid red;
+                    // }
+
+                    small.error {
+                        color: red;
+                    }
+
+                    // textarea {
+                    //     letter-spacing: 0;
+                    // }
+
+                    .rating,
+                    label {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .rating {
+                        border: none;
+                        float: left;
+                        width: fit-content;
+                        // border: 2px solid red;
+                        cursor: pointer;
+
+                        >input {
+                            display: none;
+                        }
+
+                        >label:before {
+                            margin: 5px;
+                            margin-top: 10px;
+                            font-size: 22px;
+                            font-family: FontAwesome;
+                            display: inline-block;
+                            content: "\f005";
+                        }
+
+                        >label {
+                            color: #ddd;
+                            float: right;
+                        }
+
+                        >input:checked~label,
+                        &:not(:checked)>label:hover,
+                        &:not(:checked)>label:hover~label {
+                            color: #ffe100;
+                        }
+
+                        >input:checked+label:hover,
+                        >input:checked~label:hover,
+                        >label:hover~input:checked~label,
+                        >input:checked~label:hover~label {
+                            color: #f0d53b;
+                        }
+
+
+                        &.disabled {
+                            cursor: not-allowed;
+
+                            >label {
+                                pointer-events: none;
+                                cursor: not-allowed;
+                            }
+
+                            input {
+                                pointer-events: none;
+                            }
+
+                            &:not(:checked)>label:hover,
+                            &:not(:checked)>label:hover~label {
+                                color: #ddd;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .employeePrivateDetails {
+                margin-top: 20px;
+
+                .right {
+                    width: 100%;
+                }
+            }
+
+            .bottomBar {
+                // border: 2px solid red;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .updateDetails {
+                    margin-top: 30px;
+                    padding: 15px 30px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    border: 2px solid #4b5db5;
+                    background-color: #4b5db5;
+                    color: white;
+                    border-radius: 5px;
+                    align-self: center;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+
+
+                    &:hover {
+                        background-color: #27367f;
+                        opacity: 1;
+                    }
+
+
+                    &:disabled {
+                        opacity: .75;
+                        background-color: #4b5db5;
+                        // pointer-events: none;
+                        cursor: not-allowed;
+                    }
+
+                }
+
+
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profilePage {
+        // border: 2px solid red;
+
+        display: flex;
+        flex-direction: column;
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            min-width: 350px;
+            // border: 2px solid red;
+        }
+
+        hr {
+            min-width: 350px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0;
+            text-align: center;
+        }
+
+
+        .formContainer {
+            // border: 2px solid red;
+            padding: 10px;
+
+            form {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                // border: 2px solid red;
+                // padding: 10px;
+
+                .employeeBasicDetails {
+                    // border: 2px solid red;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: column;
+                }
+
+                .employeePrivateDetails {
+                    margin-top: 30px;
+                }
+            }
+
+            .left {
+                width: 100%;
+                // border: 2px solid black;
+                // box-shadow: 5px 5px 10px #e6edef;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                gap: 30px;
+                min-width: 300px;
+                margin-bottom: 20px;
+
+                .imgContainer {
+                    // border: 2px solid red;
+                    // overflow: hidden;
+                    height: 250px;
+                    width: 250px;
+                    margin-bottom: 0;
+                    position: relative;
+                    border-radius: 50%;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 50%;
+                    }
+
+                    i {
+                        // border: 2px solid red;
+                        position: absolute;
+                        font-size: 30px;
+                        right: 15px;
+                        bottom: 30px;
+                        cursor: pointer;
+                        color: #4b5db5;
+                    }
+                }
+
+                .fields {
+                    // border: 2px solid red;
+                    width: calc(100%);
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 20px;
+
+                    .singleField {
+                        // border: 2px solid red;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        min-width: 200px;
+
+                        label {
+                            color: #6C7383;
+                        }
+
+                        input,
+                        textarea,
+                        select {
+                            padding: 10px;
+                            resize: none;
+                            outline: none;
+                            font-size: 16px;
+                            border: 2px solid #6C7383;
+                            border-radius: 5px;
+                            background-color: white;
+                            font-weight: 400;
+                            cursor: pointer;
+                            color: black;
+
+                        }
+
+                        // input.ng-invalid.ng-touched {
+                        //     border: 2px solid red;
+                        // }
+
+                        small.error {
+                            color: red;
+                        }
+
+                        // textarea {
+                        //     letter-spacing: 0;
+                        // }
+
+
+                    }
+                }
+            }
+
+            .right {
+                width: 100%;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                min-width: 200px;
+
+                .detailContainer {
+                    width: 100%;
+                }
+            }
+
+            .fields {
+                // border: 2px solid red;
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                .singleField {
+                    // border: 2px solid red;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 200px;
+
+                    label {
+                        color: #6C7383;
+                    }
+
+                    input,
+                    textarea,
+                    select {
+                        padding: 10px;
+                        resize: none;
+                        outline: none;
+                        font-size: 16px;
+                        border: 2px solid #6C7383;
+                        border-radius: 5px;
+                        background-color: white;
+                        font-weight: 400;
+                        cursor: pointer;
+                        color: black;
+
+                    }
+
+                    // input.ng-invalid.ng-touched {
+                    //     border: 2px solid red;
+                    // }
+
+                    small.error {
+                        color: red;
+                    }
+
+                    // textarea {
+                    //     letter-spacing: 0;
+                    // }
+
+                    .rating,
+                    label {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .rating {
+                        border: none;
+                        float: left;
+                        width: fit-content;
+                        // border: 2px solid red;
+                        cursor: pointer;
+
+                        >input {
+                            display: none;
+                        }
+
+                        >label:before {
+                            margin: 5px;
+                            margin-top: 10px;
+                            font-size: 22px;
+                            font-family: FontAwesome;
+                            display: inline-block;
+                            content: "\f005";
+                        }
+
+                        >label {
+                            color: #ddd;
+                            float: right;
+                        }
+
+                        >input:checked~label,
+                        &:not(:checked)>label:hover,
+                        &:not(:checked)>label:hover~label {
+                            color: #ffe100;
+                        }
+
+                        >input:checked+label:hover,
+                        >input:checked~label:hover,
+                        >label:hover~input:checked~label,
+                        >input:checked~label:hover~label {
+                            color: #f0d53b;
+                        }
+
+
+                        &.disabled {
+                            cursor: not-allowed;
+
+                            >label {
+                                pointer-events: none;
+                                cursor: not-allowed;
+                            }
+
+                            input {
+                                pointer-events: none;
+                            }
+
+                            &:not(:checked)>label:hover,
+                            &:not(:checked)>label:hover~label {
+                                color: #ddd;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .employeePrivateDetails {
+                margin-top: 20px;
+                // border: 2px solid red;
+                width: 100%;
+
+                .right {
+                    width: 100%;
+
+                    .detailContainer {
+                        .fields {
+                            // border: 2px solid red;
+
+                            .raise {
+                                // border: 2px solid red;
+                                width: 100%;
+
+                                .singleField {
+                                    // border: 2px solid red;
+                                    width: 100%;
+                                }
+                            }
+
+                            .salaryContainer {
+                                // border: 2px solid red;
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-between;
+                                gap: 10px;
+
+                                // border: 2px solid red;
+                                >div {
+                                    width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 10px;
+
+                                    .singleField {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .bottomBar {
+                // border: 2px solid red;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .updateDetails {
+                    margin-top: 30px;
+                    padding: 15px 30px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    border: 2px solid #4b5db5;
+                    background-color: #4b5db5;
+                    color: white;
+                    border-radius: 5px;
+                    align-self: center;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+
+
+                    &:hover {
+                        background-color: #27367f;
+                        opacity: 1;
+                    }
+
+
+                    &:disabled {
+                        opacity: .75;
+                        background-color: #4b5db5;
+                        // pointer-events: none;
+                        cursor: not-allowed;
+                    }
+
+                }
+
+
+            }
+        }
+
+    }
+}

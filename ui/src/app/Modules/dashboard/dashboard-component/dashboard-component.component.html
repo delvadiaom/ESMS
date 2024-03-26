@@ -1,0 +1,65 @@
+<div class="header">
+    <h1>Dashboard</h1>
+    <div class="dropdown">
+        <button class="button-31 dropbtn" id="dropdown-btn">
+            All Stats &nbsp;<i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <div class="loader" *ngIf="isdropdownLoading">
+                <mat-progress-spinner
+                    diameter="20"
+                    color="primary"
+                    mode="indeterminate"
+                >
+                </mat-progress-spinner>
+            </div>
+            <ng-container *ngIf="!isdropdownLoading">
+                <a
+                    routerLink="/departments/{{ department.departmentId }}"
+                    *ngFor="let department of departmentList"
+                    >{{ department.departmentName | uppercase }}</a
+                ></ng-container
+            >
+        </div>
+    </div>
+</div>
+<ng-template [ngIf]="!isLoading">
+    <hr />
+    <div class="container">
+        <div
+            class="loader"
+            *ngIf="isLoading"
+        >
+            <mat-progress-spinner
+                diameter="20"
+                color="primary"
+                mode="indeterminate"
+            >
+            </mat-progress-spinner>
+        </div>
+
+        <div class="containerTop">
+            <app-main-card
+                class="top"
+                [cardData]="data"
+                [cardRoute]="data.routeLink"
+                *ngFor="let data of dashCardData"
+            >
+            </app-main-card>
+        </div>
+        <ng-container *ngIf="!isLoading">
+            <div class="containerBottom">
+                <app-graph-card
+                    class="app-graph-card"
+                    [chartoptions]="salaryChart"
+                ></app-graph-card>
+
+                <app-graph-card
+                    class="app-graph-card"
+                    [chartoptions]="genderChart"
+                ></app-graph-card>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>

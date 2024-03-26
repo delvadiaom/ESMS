@@ -1,0 +1,123 @@
+$white: white;
+$purple: hsl(233deg 36% 38%);
+
+
+.loginPage {
+    user-select: none;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F5F7FF;
+    height: 100vh;
+
+    .loginBox {
+        background: $white;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        // box-shadow: 0 0 10px hsl(0, 0%, 29%);
+        box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+
+        width: 500px;
+        align-items: center;
+        // border: 2px solid red;
+
+        .loginForm {
+            // border: 2px solid red;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .imgContainer {
+            // border: 2px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            gap: 20px;
+
+            .logo {
+                align-self: center;
+                // border: 2px solid red;
+                height: 140px;
+                background-color: none;
+            }
+
+            span {
+                font-size: 26px;
+            }
+        }
+
+        label {
+            width: 100%;
+            // padding: 1em;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            color: hsl(0deg 0% 30%);
+            margin-bottom: 5px;
+            // border: 2px solid red;
+        }
+
+
+        input {
+            outline: none;
+            border: none;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+            border: 2px solid hsl(233deg 36% 38%);
+            margin-bottom: 20px;
+            // border: 2px solid red;
+            width: 100%;
+        }
+
+        .show-hide {
+            margin-right: -5em;
+        }
+
+
+        .login {
+            padding: 10px;
+            font-size: 18px;
+            background: $purple;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            letter-spacing: 1px;
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+        }
+
+        .errorMsg {
+            color: red;
+            font-size: 14px;
+            // margin: auto;
+            // border: 2px solid red;
+            // align-self: center;
+            margin-top: 10px;
+        }
+
+        .subLinks {
+            margin-top: 20px;
+
+            span {
+                text-decoration: none;
+                color: $purple;
+                cursor: pointer
+            }
+        }
+    }
+}

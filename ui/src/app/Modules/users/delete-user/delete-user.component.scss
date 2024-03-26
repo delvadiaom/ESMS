@@ -1,0 +1,127 @@
+$primary: #F5F7FF;
+$accent: #27367f;
+$dark-primary: #263238;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+hr {
+  margin: 20px 0;
+}
+
+.wrapper {
+
+  .banner {
+    background-color: $accent;
+    color: white;
+    padding: 10px;
+
+    h1 {
+      margin: auto;
+      padding: 4px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .close {
+      top: 10px;
+      right: 4%;
+      color: white;
+      position: absolute;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      i {
+        font-size: 2.4rem;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  .info{
+    margin: 30px;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    // text-align: center;
+    div{
+      // border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      p{
+        // border: 1px solid black;
+        width: 33rem;
+      }
+    }
+  }
+  h3{
+    margin: 0;
+  }
+  h2 {
+    margin: 0px;
+  }
+
+  .btn-grp {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: flex-end;
+    padding: 0 25px;
+    margin: 30px 0;
+  }
+
+  .btn {
+    width: fit-content;
+    padding: 15px 20px;
+    border-radius: 4px;
+    background-color: $accent;
+    margin: 0px 20px 15px;
+    color: white;
+    border: 1px solid $dark-primary;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: rgb(4, 50, 255);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      color: white;
+      border: 1px solid #ccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+@media screen and (max-width:720px) {
+  .wrapper {
+    width: 100%;
+
+    .form {
+      padding: 10px;
+
+      input {
+        padding: 5px;
+      }
+    }
+
+    label {
+      width: 100% !important;
+      border-right: none !important;
+      border-bottom: 2px solid black;
+    }
+  }
+}

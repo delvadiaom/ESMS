@@ -1,0 +1,394 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./assets/common/variable";
+
+$primary: #f5f7ff;
+$accent: #27367f;
+$dark-primary: #263238;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #27367f;
+    outline: 1px solid #e6edef;
+}
+
+hr {
+    border-top: 1px solid #27367f !important;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 0.25rem 0.5rem #e6edef;
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
+}
+
+.highcharts-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+app-graph-card {
+    flex-grow: 1;
+}
+
+.containerTop{
+    app-main-card{
+        &:nth-child(2n){
+            .progressBar{
+                background: linear-gradient(82.59deg, #00c48c 0%, #00a173 100%);
+            }
+        }
+    
+        &:nth-child(2n+1){
+            .progressBar{
+                background: linear-gradient(81.67deg,
+                rgb(192, 73, 43) 0%,
+                rgb(255, 51, 0) 100%);
+            }
+        }
+    }
+}
+
+// .green {
+// }
+
+// .blue {
+//     background: linear-gradient(81.67deg, #0084f4 0%, #1a4da2 100%);
+// }
+
+// .red {
+//     background: linear-gradient(81.67deg,
+//             rgb(192, 73, 43) 0%,
+//             rgb(255, 51, 0) 100%);
+// }
+
+// .black {
+//     background: linear-gradient(81.67deg,
+//             rgb(136, 56, 132) 0%,
+//             rgb(122, 3, 116) 100%);
+// }
+
+.highcharts-root {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 7px !important;
+
+    rect.highcharts-background {
+        fill: white;
+    }
+
+
+    text {
+        font-size: 15px !important;
+    }
+
+    .highcharts-tooltip {
+        color: black;
+        fill: $main-black !important;
+    }
+
+    .highcharts-tooltip-box {
+        fill: white;
+        fill-opacity: 0.6;
+        stroke-width: 0;
+    }
+
+    .highcharts-tooltip text {
+        color: black;
+    }
+}
+
+.modal {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 1px rgb(0, 0, 0);
+
+    .mat-mdc-dialog-actions.btn-grp {
+        justify-content: end;
+        align-items: flex-start;
+        height: fit-content;
+        width: 100%;
+        margin-bottom: 10px;
+
+        button {
+            padding: 20px 30px;
+        }
+
+        button:last-child {
+            margin-right: 35px;
+        }
+    }
+}
+
+.backdropBackground {
+    background-color: #bbbbbb73;
+    backdrop-filter: blur(4px);
+}
+
+// Form Banner
+.banner {
+    background-color: $accent;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+
+    .logo {
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+    }
+
+    .close {
+        top: 15%;
+        right: 3%;
+        color: white;
+        position: absolute;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        i {
+            font-size: 2rem;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+// Modal
+.modal {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 1px rgb(0, 0, 0);
+
+    .mat-mdc-dialog-title.mdc-dialog__title {
+
+        &.title_dilog {
+            text-align: center;
+            font-size: 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: $accent;
+        }
+    }
+
+    .mat-mdc-dialog-actions.btn-grp {
+        justify-content: end;
+        align-items: flex-start;
+        height: fit-content;
+        width: 100%;
+        margin-bottom: 10px;
+
+        button {
+            padding: 20px 30px;
+        }
+
+        button:last-child {
+            margin-right: 30px;
+        }
+    }
+}
+
+// Mat Button
+.btn-grp .mdc-button.mat-mdc-button {
+    padding: 20px 25px;
+}
+
+// Save Button
+.mdc-button.mat-mdc-button.save_button {
+    background-color: #27367f;
+    color: white;
+
+    &:hover {
+        background-color: #5c6eca;
+        color: white;
+    }
+
+    &:disabled {
+        background-color: #ccc;
+        color: #fff;
+        border: 1px solid #ccc;
+        cursor: not-allowed;
+    }
+}
+
+.mat-mdc-button:not(:disabled) {
+
+    &.save_button {
+        background-color: #27367f;
+        color: #fff;
+        border: 1px solid #263238;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #5c6eca;
+            color: white;
+        }
+
+        &:disabled {
+            background-color: #ccc;
+            color: #fff;
+            border: 1px solid #ccc;
+            cursor: not-allowed;
+        }
+    }
+}
+
+
+.highcharts-root rect.highcharts-background {
+    border: 2px solid blue !important;
+}
+.red-star{
+    color: red;
+    font-size: 1.3rem;
+}
+.show_error{
+    color: red;
+}
+input.ng-touched.ng-invalid{
+    border: 1px solid red !important;
+    box-shadow: 0 0 8px inset rgba(255,0,0,0.2);
+}
+//common button
+
+.button-31 {
+    background-color: #4b5db5;
+    border-radius: 4px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    max-width: 200px;
+    min-height: 50px;
+    min-width: 10px;
+    outline: none;
+    overflow: hidden;
+    padding: 9px 20px 8px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    transition: all 0.4s ease;
+
+    &:hover {
+        background-color: #27367f;
+    }
+}
+
+.iconBtn{
+    background-color: #4b5db5;
+    border-radius: 4px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    min-height: 50px;
+    outline: none;
+    overflow: hidden;
+    padding: 9px 20px 8px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: all 0.4s ease;
+    
+    &:hover {
+        background-color: #27367f;
+    }
+
+    &.delete{
+        background-color: rgb(255, 91, 91);
+        border: 2px solid rgb(255, 91, 91);
+
+        &:hover{
+            background-color: red;
+        }
+    }
+
+    .mat-sort-header-arrow {
+        color: #fff !important;
+    background-color: #fff;
+    }
+
+button {
+    outline: none !important;
+}}
+
+text.highcharts-title,text.highcharts-axis-title{
+    font-weight: 800;
+    font-size: 22px !important;
+}
+
+
+.spinner-loader{
+    display: flex; justify-content: center; align-items: center; background: white;padding: 20px;
+}
+
+// .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+//     background-color: red!important;
+//     color: white !important;
+
+//     button{
+//         color: white !important;
+//         background-color: #263238;
+//     }
+// }
+
+.green-snackbar{
+    background-color: green !important;
+}

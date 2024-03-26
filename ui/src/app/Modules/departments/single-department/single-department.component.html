@@ -1,0 +1,56 @@
+<div class="header">
+    <h1>
+        <ul>
+            <li>
+                <a [routerLink]="'/departments'">Departments</a>
+            </li>
+            <li>
+                <a>
+                    {{ departmentName | titlecase }}
+                </a>
+            </li>
+        </ul>
+    </h1>
+
+    <div class="btn-grp">
+        <button matTooltip="Add Team" class="button-31" (click)="addTeam()">
+            Add Team
+        </button>
+        <button
+            matTooltip="Edit Department"
+            class="iconBtn"
+            (click)="editDepartment(departmentId)"
+        >
+            <i class="fa fa-edit"></i>
+        </button>
+        <button
+            matTooltip="Delete Department"
+            class="iconBtn delete"
+            (click)="deleteDepartment(departmentId)"
+        >
+            <i class="fa fa-trash"></i>
+        </button>
+    </div>
+</div>
+<ng-template [ngIf]="!isLoading">
+    <hr />
+    <div class="container">
+        <div class="containerTop">
+            <app-main-card
+                class="top"
+                [cardData]="data"
+                [cardRoute]="data.teamId"
+                *ngFor="let data of teamList"
+            ></app-main-card>
+        </div>
+        <div class="containerBottom">
+            <app-graph-card
+                class="app-graph-card"
+                [chartoptions]="departmentWiseCostingChart"
+            ></app-graph-card>
+            <!-- <app-graph-card class="app-graph-card" [chartoptions]="payrollChart"></app-graph-card> -->
+        </div>
+    </div>
+</ng-template>
+
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>

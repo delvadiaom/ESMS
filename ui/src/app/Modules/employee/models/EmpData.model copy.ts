@@ -1,0 +1,30 @@
+export interface EmpData {
+    no: number;
+    aadharNo: string;
+    actualEmployementDate: number;
+    createdDate: number;
+    dateOfBirth: number;
+    dateOfJoining: number;
+    departmentId: number;
+    departmentName: string;
+    emailId: string;
+    emergencyNumber: string;
+    empCode: string;
+    empId: number;
+    empType: number;
+    fullName: string;
+    gender: string;
+    isActive: boolean;
+    modifiedDate: number;
+    panNo: string;
+    pastExperience: number;
+    permanentAddress: string;
+    phoneNumber: string;
+    presentAddress: string;
+    profileImage: string;
+    reportingManager: string;
+    roleId: number;
+    roleName: string;
+    teamId: number;
+    teamName: string;
+}

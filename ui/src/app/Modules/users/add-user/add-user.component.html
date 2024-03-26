@@ -1,0 +1,105 @@
+<div class="wrapper">
+
+    <!-- Banner  -->
+    <div class="banner">
+        <h1 mat-dialog-title class="title_dilog">{{data.title}}</h1>
+        <button class="close" matTooltip="Close" mat-dialog-close @rotate><i class="fa fa-close"></i></button>
+    </div>
+
+    <!-- Fetch Employee Form -->
+    <ng-template [ngIf]="!isValidEmployee">
+        <form [formGroup]="firstForm">
+
+            <!-- Email Field  -->
+            <div class="form-field">
+                <label for="empEmail">Email<span class="red-star">*</span></label>
+                <input type="email" formControlName="empEmail" id="empEmail" placeholder="employee@asite.com" />
+            </div>
+
+            <!-- Error Messages -->
+            <span class="error"
+                *ngIf="!firstForm.controls['empEmail']?.valid && firstForm.controls['empEmail']?.dirty && firstForm.controls['empEmail']?.errors?.['required']">
+                Employee Email is required
+            </span>
+            <span class="error" *ngIf="
+            firstForm.controls['empEmail'].hasError('email')">
+                Enter valid email
+            </span>
+            <span *ngIf="!firstForm.controls['empEmail']?.dirty && isFetchFail" class="error">Employee Email is
+                Invalid</span>
+
+            <span
+                *ngIf="firstForm.controls['empEmail'].hasError('pattern') && !firstForm.controls['empEmail'].hasError('email')"
+                class="error">Note: Email outside the orgnaization are
+                prohibited.</span>
+        </form>
+    </ng-template>
+
+    <!-- Add User Form  -->
+    <ng-template [ngIf]="isValidEmployee">
+        <form [formGroup]="secondForm">
+
+            <!-- Name  -->
+            <div class="form-field" matTooltip="Name is fetched automatically.">
+                <label for="empName">Name<span class="red-star">*</span></label>
+                <input type="text" readonly class="not-allow" formControlName="empName" id="empName" placeholder="Enter name" />
+
+            </div>
+
+            <!-- Email -->
+            <div class="form-field" matTooltip="Email is fetched automatically.">
+                <label for="empEmail">Email<span class="red-star">*</span></label>
+                <input type="email"  readonly class="not-allow" formControlName="empEmail" id="empEmail" placeholder="Enter email" />
+            </div>
+            <!-- Email Error -->
+            <span class="error" *ngIf="secondForm.controls['empEmail']?.invalid && secondForm.controls['empEmail']?.dirty">
+                Enter valid email
+            </span>
+
+            <!-- Role  -->
+            <div class="form-field">
+                <label for="empRole">Role<span class="red-star">*</span></label>
+                <select formControlName="empRole" id="empRole">
+                
+                    <option hidden value="" disabled >Select Role</option>
+                    <option *ngFor="let role of roles" [value]="role.key">{{ role.name }}</option>
+                </select>
+            </div>
+
+            <!-- Password  -->
+            <div class="form-field">
+                <label for="empPassword">Password<span class="red-star">*</span></label>
+                <input type="password" formControlName="empPassword" id="empPassword" placeholder="Enter Password" />
+                <span class="show_error" *ngIf="secondForm.controls['empPassword'].hasError('required')&& secondForm.controls['empPassword'].touched">Enter Password</span>
+                <span class="show_error" *ngIf="secondForm.controls['empPassword'].hasError('minlength')">Password must be longer than 8 characters.</span>
+                <span class="show_error" *ngIf="secondForm.controls['empPassword'].hasError('pattern')">Password must be a combination of uppercase, lowercase, numbers and symbols. </span>
+            </div>
+
+            <!-- Confirm Password  -->
+            <div class="form-field">
+                <label for="empConfirmPassword">Confirm Password<span class="red-star">*</span></label>
+                <input type="password" formControlName="confirmPassword" id="empConfirmPassword"
+                    placeholder="Confirm Password" />
+                    <span class="show_error" *ngIf="secondForm.controls['confirmPassword'].hasError('required')&& secondForm.controls['empPassword'].touched">Enter Password</span>
+                   
+                <span class="show_error" *ngIf="this.secondForm.hasError('passwordMatchErr')">Password does not match.</span>
+            </div>
+
+           
+        </form>
+    </ng-template>
+</div>
+<div mat-dialog-actions class="btn-grp" *ngIf="!isValidEmployee">
+    <button mat-button mat-dialog-close class="cancel_button" class="cancel_button">Close</button>
+    <button mat-button #firstFormBtn (click)="fetchData()" value="Fetch" [disabled]="!firstForm.valid"
+        class="save_button">{{firstBtnText}}</button>
+</div>
+<div mat-dialog-actions class="btn-grp" *ngIf="isValidEmployee">
+    <button mat-button (click)="back()" class="cancel_button">Back</button>
+    <button mat-button (click)="addUser()"
+        [disabled]="(!secondForm.valid) && btnEnable"
+        class="save_button">{{addBtnText}}</button>
+</div>
+<span class="error" *ngIf=" firstForm.controls['empID']?.invalid &&firstForm.controls['empID']?.dirty">
+    Enter valid email
+</span>

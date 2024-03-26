@@ -1,0 +1,53 @@
+package com.networkKnights.ecms.constant;
+
+public class URLConstant {
+
+    public static final String TEAM_ID= "teamId";
+    public static final String DEPARTMENT_ID= "departmentId";
+    public static final String PAGE_NUMBER= "pageNumber";
+    public static final String PAGE_SIZE= "pageSize";
+    public static final String EMP_ID = "empId";
+    public static final String NAME= "name";
+    public static final String EMAIL= "email";
+    public static final String ADMIN_EMP_CODE= "adminEmpCode";
+    public static final String DASHBOARD = "/dashboard";
+    public static final String GET = "/";
+    public static final String DEPARTMENT = "/department";
+    public static final String TEAM = "/team";
+    public static final String EMPLOYEE = "/employee";
+    public static final String GET_ALL_DEPARTMENTS_LIST  = "/getAllDepartmentsList";
+    public static final String GET_ALL_DEPARTMENT_LIST= "/getAllDepartmentList";
+    public static final String GET_DEPARTMENT_DETAILS= "/getDepartmentDetails";
+    public static final String SAVE_DEPARTMENT_DETAILS= "/saveDepartmentDetails";
+    public static final String UPDATE_DEPARTMENT_DETAILS= "/updateDepartmentDetails";
+    public static final String DELETE_DEPARTMENT_DETAILS= "/deleteDepartmentDetails";
+    public static final String GET_ALL_TEAMS = "/getAllTeams";
+    public static final String GET_TEAMS= "/getTeams";
+    public static final String GET_ALL_TEAM= "/getAllTeam";
+    public static final String GET_EMP_COUNT_BY_TEAM= "/getEmpCountByTeam";
+    public static final String GET_TEAM_BY_ID= "/getTeamById";
+    public static final String SAVE_TEAM_DETAILS= "/saveTeamDetails";
+    public static final String UPDATE_TEAM_DETAILS="/updateTeamDetails";
+    public static final String DELETE_TEAM_DETAILS="/deleteTeamDetails";
+    public static final String GET_ALL_EMPLOYEE_DETAILS="/getAllEmployeeDetails";
+    public static final String GET_ALL_EMPLOYEE_DETAILS_BY_TEAM_ID = "/getAllEmployeeDetailsByTeamId";
+    public static final String GET_ALL_EMPLOYEE_DETAILS_BY_DEPARTMENT_ID = "/getAllEmployeeDetailsByDepartmentId";
+    public static final String GET_EMPLOYEE_DETAILS= "/getEmployeeDetails";
+    public static final String GET_EMPLOYEE= "/getEmployee";
+    public static final String SAVE_EMPLOYEE= "/saveEmployee";
+    public static final String UPDATE_EMPLOYEE= "/updateEmployee";
+    public static final String GET_EMPLOYEE_DETAILS_FROM_EMAIL= "/getEmployeeDetailsFromEmail";
+    public static final String SAVE_EMPLOYEE_DETAILS= "/saveEmployeeDetails";
+    public static final String UPDATE_EMPLOYEE_DETAILS= "/updateEmployeeDetails";
+    public static final String DELETE_EMPLOYEE_DETAILS= "/deleteEmployeeDetails";
+    public static final String ACTIVE_EMPLOYEE_DETAILS= "/activeEmployeeDetails";
+    public static final String GET_EMPLOYEE_IMAGE= "/getEmployeeImage";
+    public static final String SAVE_EMPLOYEE_IMAGE= "/saveEmployeeImage";
+    public static final String UPDATE_EMPLOYEE_IMAGE= "/updateEmployeeImage";
+    public static final String GET_COUNT_OF_EMPLOYEE= "/getCountOfEmployee";
+    public static final String GET_EMPLOYEE_DETAILS_BY_NAME_CONTAINING= "/getEmployeeDetailsByNameContaining";
+    public static final String GET_ACTIVE_EMPLOYEE_DETAILS= "/getActiveEmployeeDetails";
+    public static final String GET_INACTIVE_EMPLOYEE_DETAILS= "/getInactiveEmployeeDetails";
+    public static final String GET_EMPLOYEE_ROLES= "/getEmployeeRoles";
+    public static final String SAVE_EMPLOYEE_ROLES= "/saveEmployeeRoles";
+}

@@ -1,0 +1,105 @@
+$main-theme-color: #4b5db5;
+$main-theme-background-color: #f9f9f9;
+$main-white: white;
+$main-black:black;
+$box-shadow-normal: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    h1 {
+        font-size: 28px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 150px;
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: $main-theme-background-color;
+            min-width: 150px;
+            min-height: 50px;
+            box-shadow: $box-shadow-normal;
+            z-index: 1;
+            border-radius: 5px;
+
+            a {
+                margin-top: 2px;
+                color: $main-black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                border-radius: 5px;
+
+                &:hover {
+                    background-color: $main-theme-color;
+                    color: $main-white;
+                }
+            }
+            .isLoading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+        }
+
+        &:hover .dropdown-content {
+            display: block;
+        }
+    }
+}
+
+.container {
+    margin-top: 30px;
+
+    .containerTop {
+        display: flex;
+        width: 100%;
+        column-gap: 50px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .top {
+            flex-grow: 1;
+            width: 320px;
+        }
+    }
+
+    .containerBottom {
+        display: flex;
+        column-gap: 50px;
+        row-gap: 50px;
+
+        .app-graph-card {
+            width: 50%;
+        }
+    }
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $main-white;
+    padding: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+    .app-graph-card {
+        width: 100%;
+    }
+
+    .containerBottom {
+        flex-wrap: wrap;
+    }
+}
